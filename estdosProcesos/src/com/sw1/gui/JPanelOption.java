@@ -28,11 +28,22 @@ public class JPanelOption extends JPanel {
 	private JPanelTableLocked locked;
 	private JPanelTableFinished finished;
 	private JPanelTableRunning running;
-
 	private JPanelTableTimeout timeout;
-
+	private JPanelLock_SusLocked lock_SusLocked;
+	private JPanelLocked_Ready locked_Ready;
+	private JPanelSusLocked susLocked;
+	private JPanelSusReady susReady;
+	private JPanelTableRun_Block run_Block;
+	private JPanelTableRun_SL run_SL;
+	private JPanelTableSB_Block sb_Block;
+	private JPanelTableSB_SL sb_SL;
+	private JPanelTableSL_Ready sl_Ready;
+		
 	public JPanelOption(Transition transition, JPanelReady ready, JPanelProcess process, JPanelTableLocked locked,
-			JPanelTableFinished finished, JPanelTableRunning running, MainWindow window,JPanelTableTimeout timeout) {
+			JPanelTableFinished finished, JPanelTableRunning running, MainWindow window,JPanelTableTimeout timeout, 
+			JPanelLock_SusLocked lock_SusLocked,JPanelLocked_Ready locked_Ready, JPanelSusLocked susLocked,
+			JPanelSusReady susReady,JPanelTableRun_Block run_Block,JPanelTableRun_SL run_SL, JPanelTableSB_Block sb_Block,
+			JPanelTableSB_SL sb_SL,JPanelTableSL_Ready sl_Ready) {
 
 		this.transition=transition;
 		this.ready=ready;
@@ -41,8 +52,16 @@ public class JPanelOption extends JPanel {
 		this.finished = finished;
 		this.running = running;
 		this.window = window;
-	
 		this.timeout=timeout;
+		this.lock_SusLocked = lock_SusLocked;
+		this.locked_Ready = locked_Ready;
+		this.susLocked = susLocked;
+		this.susReady = susReady;
+		this.run_Block = run_Block;
+		this.run_SL = run_SL;
+		this.sb_Block = sb_Block;
+		this.sb_SL = sb_SL;
+		this.sl_Ready = sl_Ready;
 		
 		this.setLayout(null);
 		this.setBackground(new Color(223,211,182));
