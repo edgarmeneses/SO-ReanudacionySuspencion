@@ -17,17 +17,20 @@ public class Block {
 	 */
 	private List<Process> listLocked;
 	private List<Process>  listHistoryLock;
+	private ArrayList<Process> listLock_Ready;
 	private SuspendedBlocked suspendedBlocked;
 	private Ready ready;
 	
 	public Block(){
 		listLocked = new ArrayList<>();
 		listHistoryLock = new ArrayList<Process>();
+		listLock_Ready = new ArrayList<Process>();
 	}
 	
 	public Block(Ready ready,SuspendedBlocked suspendedBlocked){
 		listLocked = new ArrayList<>();
 		listHistoryLock = new ArrayList<Process>();
+		listLock_Ready = new ArrayList<Process>();
 		this.ready= ready;
 		this.suspendedBlocked= suspendedBlocked;
 	}
@@ -50,6 +53,19 @@ public class Block {
 		listHistoryLock.add(processHistorical);
 
 	}
+	
+	public void addHistoricalLockReady(Process process){
+		Process processHistorical= new Process();
+		processHistorical.setName(process.getName());
+		processHistorical.setLocked(process.isLocked());
+		processHistorical.setPriority(process.getPriority());
+		processHistorical.setTime(process.getTime());
+		processHistorical.setSuspendedBlocked(process.isSuspendedBlocked());
+		processHistorical.setSuspendedReady(process.isSuspendedReady());
+		listLock_Ready.add(processHistorical);
+
+	}
+	
 	// mandar  procesos bloqueados a la lista de listos y removerlos de la lista bloqueados
 	public void activeProcess(int quantum, Process process){
 		
@@ -58,6 +74,7 @@ public class Block {
 		}
 		ready.add(process);
 		addHistoricalProcess(process);
+		addHistoricalLockReady(process);
 		listLocked.remove(process);
 	}
 	
@@ -83,6 +100,14 @@ public class Block {
 		this.listLocked = listLocked;
 	}
 	
+	public ArrayList<Process> getListLock_Ready() {
+		return listLock_Ready;
+	}
+
+	public void setListLock_Ready(ArrayList<Process> listLock_Ready) {
+		this.listLock_Ready = listLock_Ready;
+	}
+
 	@Override
 	public String toString() {
 		return "Block [listLocked=" + listLocked + "]";

@@ -45,6 +45,41 @@ public class TestDos {
 		for (Process process : transition.getRunning().getExpirateTime()) {
 			System.out.println(process.getName());
 		}	
+		
+		System.out.println("Despachados");
+		for (Process process : transition.getReady().getDispatch()) {
+			System.out.println(process.getName());
+		}
+		
+		System.out.println("Ejecutado-Bloqueado");
+		for (Process process : transition.getRunning().getListRun_locked()) {
+			System.out.println(process.getName());
+		}
+		
+		System.out.println("Bloqueo-Listos");
+		for (Process process : transition.getBlock().getListLock_Ready()) {
+			System.out.println(process.getName());
+		}
+		
+		System.out.println("Suspendido Bloqueado-Suspendido Listos");
+		for (Process process : transition.getSuspendedBlocked().getListSB_SL()) {
+			System.out.println(process.getName());
+		}
+		
+		System.out.println("Suspendido Bloqueado-Bloqueado");
+		for (Process process: transition.getSuspendedBlocked().getListSB_locked()) {
+			System.out.println(process.getName());
+		}
+		
+		System.out.println("Ejecutado-Suspendido Listo");
+		for (Process process: transition.getRunning().getListRun_SL()) {
+			System.out.println(process.getName());
+		}
+		
+		System.out.println("Suspendido Listo-Ejecutado");
+		for (Process process: transition.getSuspendedReady().getListSL_ready()) {
+			System.out.println(process.getName());
+		}
 	
 		System.out.println("Salida ");
 		for (Process process : transition.getFinished()) {

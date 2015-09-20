@@ -17,6 +17,8 @@ public class Running {
 	private Queue<Process> running;
 	private ArrayList<Process> runningHystory;
 	private ArrayList<Process> expirateTime;
+	private ArrayList<Process> listRun_locked;
+	private ArrayList<Process> listRun_SL;
 	private SuspendedReady suspendedReady;
 	private Transition transition;
 	private Ready ready;
@@ -27,6 +29,8 @@ public class Running {
 		runningHystory = new ArrayList<Process>();
 		expirateTime = new ArrayList<Process>();
 		running = new LinkedList<Process>();
+		listRun_locked = new ArrayList<Process>();
+		listRun_SL = new ArrayList<Process>();
 
 	}
 
@@ -34,14 +38,13 @@ public class Running {
 		this.running = new LinkedList<Process>();
 		this.runningHystory = new ArrayList<Process>();
 		this.expirateTime = new ArrayList<Process>();
+		this.listRun_locked = new ArrayList<Process>();
+		this.listRun_SL = new ArrayList<Process>();
 		this.ready = ready;
 		this.block = block;
 		this.transition = transition;
 		this.suspendedReady=suspendedReady;
 	}
-
-
-
 
 	/**
 	 * metodo que permite bloequear un proceso
@@ -74,7 +77,7 @@ public class Running {
 	}
 
 	public void add(Process process){
-		System.out.println("Ejecutado" + process.getName());
+//		System.out.println("Ejecutado" + process.getName());
 		running.add(process);
 		run();
 	}
@@ -102,6 +105,31 @@ public class Running {
 		expirateTime.add(processHistorical);
 
 	}
+	
+	public void addExpirateRun_Locked(Process process){
+		Process processHistorical= new Process();
+		processHistorical.setName(process.getName());
+		processHistorical.setLocked(process.isLocked());
+		processHistorical.setPriority(process.getPriority());
+		processHistorical.setTime(process.getTime());
+		processHistorical.setSuspendedBlocked(process.isSuspendedBlocked());
+		processHistorical.setSuspendedReady(process.isSuspendedReady());
+		listRun_locked.add(processHistorical);
+
+	}
+	
+	public void addHistoricalRun_SL(Process process){
+		Process processHistorical= new Process();
+		processHistorical.setName(process.getName());
+		processHistorical.setLocked(process.isLocked());
+		processHistorical.setPriority(process.getPriority());
+		processHistorical.setTime(process.getTime());
+		processHistorical.setSuspendedBlocked(process.isSuspendedBlocked());
+		processHistorical.setSuspendedReady(process.isSuspendedReady());
+		listRun_SL.add(processHistorical);
+
+	}
+	
 	/**
 	 * metodo que permite ejecutar el proceso
 	 */
@@ -117,8 +145,10 @@ public class Running {
 
 		if(process.isLocked()){
 			block.add(process);
+			addExpirateRun_Locked(process);
 		}else if(process.isSuspendedReady()){
 			suspendedReady.add(process);
+			addHistoricalRun_SL(process);
 		}
 		else{
 			if(process.getTime() == 0){
@@ -142,6 +172,24 @@ public class Running {
 		}else {
 			process.setTime(0);
 		}
+	}
+
+	
+	
+	public ArrayList<Process> getListRun_SL() {
+		return listRun_SL;
+	}
+
+	public void setListRun_SL(ArrayList<Process> listRun_SL) {
+		this.listRun_SL = listRun_SL;
+	}
+
+	public ArrayList<Process> getListRun_locked() {
+		return listRun_locked;
+	}
+
+	public void setListRun_locked(ArrayList<Process> listRun_locked) {
+		this.listRun_locked = listRun_locked;
 	}
 
 	public Queue<Process> getRunning() {

@@ -10,6 +10,7 @@ public class Ready {
 
 	private ArrayList<Process> historicalReady;
 	private ArrayList<Process> ready;
+	private ArrayList<Process> dispatch;
 	private SuspendedReady suspendedReady;
 	private Running running;
 
@@ -17,12 +18,14 @@ public class Ready {
 	public Ready() {
 		ready = new ArrayList<Process>();
 		historicalReady = new ArrayList<Process>();
+		dispatch = new ArrayList<Process>();
 		running = new Running();
 	}
 
 	public Ready(Running running,SuspendedReady suspendedReady) {
 		this.historicalReady = new ArrayList<Process>();
 		this.ready = new ArrayList<Process>();
+		this.dispatch = new ArrayList<Process>();
 		this.running = running;
 		this.suspendedReady=suspendedReady;
 	}
@@ -47,6 +50,18 @@ public class Ready {
 		historicalReady.add(processHistorical);
 
 	}
+	
+	public void addHistoricalDispatch(Process process){
+		Process processHistorical= new Process();
+		processHistorical.setName(process.getName());
+		processHistorical.setLocked(process.isLocked());
+		processHistorical.setPriority(process.getPriority());
+		processHistorical.setTime(process.getTime());
+		processHistorical.setSuspendedBlocked(process.isSuspendedBlocked());
+		processHistorical.setSuspendedReady(process.isSuspendedReady());
+		dispatch.add(processHistorical);
+
+	}
 
 	/**
 	 * metoo que permite ordenar la lista de procesos listos
@@ -66,10 +81,11 @@ public class Ready {
 	}
 
 	public void dispatch(Process process) {
-		System.out.println("Despachado" + process.getName());
+//		System.out.println("Despachado" + process.getName());
 		addHistoricalProcess(process);
 		running.add(process);
 		ready.remove(process);
+		addHistoricalDispatch(process);
 	}
 
 
@@ -107,6 +123,14 @@ public class Ready {
 
 	public void setRunning(Running running) {
 		this.running = running;
+	}
+
+	public ArrayList<Process> getDispatch() {
+		return dispatch;
+	}
+
+	public void setDispatch(ArrayList<Process> dispatch) {
+		this.dispatch = dispatch;
 	}
 
 	@Override
