@@ -33,6 +33,7 @@ public class JPanelOption extends JPanel {
 	private JPanelLocked_Ready locked_Ready;
 	private JPanelSusLocked susLocked;
 	private JPanelSusReady susReady;
+	private JPanelTableDispatch dispatch;
 	private JPanelTableRun_Block run_Block;
 	private JPanelTableRun_SL run_SL;
 	private JPanelTableSB_Block sb_Block;
@@ -42,8 +43,8 @@ public class JPanelOption extends JPanel {
 	public JPanelOption(Transition transition, JPanelReady ready, JPanelProcess process, JPanelTableLocked locked,
 			JPanelTableFinished finished, JPanelTableRunning running, MainWindow window,JPanelTableTimeout timeout, 
 			JPanelLock_SusLocked lock_SusLocked,JPanelLocked_Ready locked_Ready, JPanelSusLocked susLocked,
-			JPanelSusReady susReady,JPanelTableRun_Block run_Block,JPanelTableRun_SL run_SL, JPanelTableSB_Block sb_Block,
-			JPanelTableSB_SL sb_SL,JPanelTableSL_Ready sl_Ready) {
+			JPanelSusReady susReady,JPanelTableDispatch dispatch ,JPanelTableRun_Block run_Block,
+			JPanelTableRun_SL run_SL, JPanelTableSB_Block sb_Block,JPanelTableSB_SL sb_SL,JPanelTableSL_Ready sl_Ready) {
 
 		this.transition=transition;
 		this.ready=ready;
@@ -57,6 +58,7 @@ public class JPanelOption extends JPanel {
 		this.locked_Ready = locked_Ready;
 		this.susLocked = susLocked;
 		this.susReady = susReady;
+		this.dispatch = dispatch;
 		this.run_Block = run_Block;
 		this.run_SL = run_SL;
 		this.sb_Block = sb_Block;
