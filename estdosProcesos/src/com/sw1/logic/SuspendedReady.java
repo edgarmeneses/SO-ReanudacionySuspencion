@@ -3,7 +3,7 @@ package com.sw1.logic;
 import java.util.ArrayList;
 
 public class SuspendedReady {
-	
+
 	private ArrayList<Process> historicalSuspendedReady;
 	private ArrayList<Process> suspendedReady;
 	private Ready ready;
@@ -13,27 +13,31 @@ public class SuspendedReady {
 		historicalSuspendedReady = new ArrayList<Process>();
 		suspendedReady = new ArrayList<Process>();
 	}
-	
+
 	public SuspendedReady(Ready ready) {
 		super();
 		// TODO Auto-generated constructor stub
 		historicalSuspendedReady= new ArrayList<Process>();
 		suspendedReady = new ArrayList<Process>();
 		this.ready=ready;
-		
+
 	}
-	
+
 	public void add(Process process){
+		System.out.println("Suspendido Listos" + process.getName());
 		this.suspendedReady.add(process);
 		this.historicalSuspendedReady.add(process);
 		throwProcess(process);
-		
+
 	}
-	
+
 	public void throwProcess(Process process){
-		
-			ready.add(process);
-			suspendedReady.remove(process);
+		System.out.println("Reanudado" + process.getName());
+		if(process.getTime()<=5){
+			process.setSuspendedReady(false);
+		}
+		ready.add(process);
+		suspendedReady.remove(process);
 	}
 
 
@@ -72,6 +76,6 @@ public class SuspendedReady {
 				+ historicalSuspendedReady + ", suspendedReady="
 				+ suspendedReady + "]";
 	}
-	
+
 
 }

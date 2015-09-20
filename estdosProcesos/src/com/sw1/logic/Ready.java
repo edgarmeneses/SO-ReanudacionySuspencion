@@ -66,10 +66,10 @@ public class Ready {
 	}
 
 	public void dispatch(Process process) {
-		
-			addHistoricalProcess(process);
-			running.add(process);
-			ready.remove(process);
+		System.out.println("Despachado" + process.getName());
+		addHistoricalProcess(process);
+		running.add(process);
+		ready.remove(process);
 	}
 
 

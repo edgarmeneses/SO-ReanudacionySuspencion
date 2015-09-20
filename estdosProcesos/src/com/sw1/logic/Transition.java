@@ -131,7 +131,6 @@ public class Transition  implements Runnable{
 		Thread thread = Thread.currentThread();
 		while (!ready.getReady().isEmpty()) {
 				isRunning(ready.getReady().get(0));
-				System.out.println(ready.getReady().size());
 				//ready.getReady().remove(0);
 			
 			try {

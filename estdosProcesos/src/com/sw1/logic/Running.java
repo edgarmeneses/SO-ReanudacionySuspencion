@@ -74,7 +74,7 @@ public class Running {
 	}
 
 	public void add(Process process){
-		//		System.out.println(process);
+		System.out.println("Ejecutado" + process.getName());
 		running.add(process);
 		run();
 	}

@@ -9,12 +9,12 @@ public class TestDos {
 		Transition transition = new Transition(5);
 
 		//bloqueado / SB / SL
-		transition.getReady().add(new Process("p1", 4, 0, false, false, false));
-		transition.getReady().add(new Process("p2", 9, 0, true, false, false));
-		transition.getReady().add(new Process("p3", 14, 0, false, false, true));
-		transition.getReady().add(new Process("p4", 8, 0, true, true, false));
-		transition.getReady().add(new Process("p5", 11, 0, false, false, true));
-		transition.getReady().add(new Process("p6", 6, 0, false, false, false));
+		transition.getReady().getReady().add(new Process("p1", 4, 0, false, false, false));
+		transition.getReady().getReady().add(new Process("p2", 9, 0, true, false, false));
+		transition.getReady().getReady().add(new Process("p3", 14, 0, false, false, true));
+		transition.getReady().getReady().add(new Process("p4", 8, 0, true, true, false));
+		transition.getReady().getReady().add(new Process("p5", 11, 0, false, false, true));
+		transition.getReady().getReady().add(new Process("p6", 6, 0, false, false, false));
 		
 		transition.runProcess();
 		System.out.println("Listos");
