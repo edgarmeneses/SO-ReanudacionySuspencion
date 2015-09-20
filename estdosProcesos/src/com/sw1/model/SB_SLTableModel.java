@@ -1,31 +1,20 @@
 package com.sw1.model;
 
-import java.awt.Component;
 import java.util.ArrayList;
-import java.util.Vector;
 
-import javax.jws.Oneway;
-import javax.swing.CellRendererPane;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JLabel;
-import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.TableCellRenderer;
+
 import com.sw1.logic.Process;
 import com.sw1.logic.Transition;
 
-public class ReadyTableModel extends AbstractTableModel implements Runnable{
+public class SB_SLTableModel extends AbstractTableModel implements Runnable{
 
-	private static final String [] COLUMNNAMES={"Nombre","Tiempo","Prioridad","Bloqueo","Sup Bloq","Sus Listos"};
-	//Process process= new Process(name, time, priority, locked, suspendedBlocked, suspendedReady)
-	
-	private static final Class[] COLUMNSTYPES ={String.class,Integer.class,Integer.class,Boolean.class,Boolean.class,Boolean.class};
+	private static final String [] COLUMNNAMES={"Nombre"};
+	private static final Class[] COLUMNSTYPES ={String.class};
 	private ArrayList<Object[]> data;
 	private Transition transition;
 	
-	public ReadyTableModel(Transition transition) {
+	public SB_SLTableModel(Transition transition) {
 		
 		// TODO Auto-generated constructor stub
 		data=new ArrayList<Object[]>();
@@ -34,15 +23,14 @@ public class ReadyTableModel extends AbstractTableModel implements Runnable{
 	}
 	
 	public void fill(){
-		for (Process process : transition.getReady().getReady()) {
-			data.add(fillRow(process.getName(),process.getTime(),process.getPriority(),process.isLocked(),
-					process.isSuspendedBlocked(),process.isSuspendedReady()));
+		for (Process process : transition.getSuspendedBlocked().getListSB_SL()) {
+			System.out.println(process.getName());
 		}
 		
 	}
 
-	public Object[] fillRow(String name, int time, int priority, boolean isBlock, boolean isSuspBlock, boolean isSuspReady){
-		return new Object[]{name,priority,time,isBlock,isSuspBlock,isSuspReady};
+	public Object[] fillRow(String name){
+		return new Object[]{name};
 	}
 	
 
@@ -82,7 +70,7 @@ public class ReadyTableModel extends AbstractTableModel implements Runnable{
 	@Override
 	public boolean isCellEditable(int rowIndex, int columnIndex) {
 		// TODO Auto-generated method stub
-		return false;
+		return getColumnClass(columnIndex).equals(Boolean.class);
 	}
 	
 	@Override
@@ -106,4 +94,5 @@ public class ReadyTableModel extends AbstractTableModel implements Runnable{
 		// TODO Auto-generated method stub
 		
 	}
+
 }

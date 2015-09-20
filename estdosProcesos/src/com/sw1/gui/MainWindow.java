@@ -46,7 +46,7 @@ public class MainWindow extends JFrame{
 //		panelOption.setBounds(((DEFOULT_DIMENSION.width/8)*7), 0, DEFOULT_DIMENSION.width/7, DEFOULT_DIMENSION.height);
 
 		add(panelFunction);
-		add(panelOption);
+		//add(panelOption);
 	}
 
 
