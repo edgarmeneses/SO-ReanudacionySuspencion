@@ -44,7 +44,7 @@ public class JPanelTableSB_SL extends JPanel{
 	}
 
 	public void removeTable(){
-		for (Process process : transition.getBlock().getListHistoryLock()) {
+		for (Process process : transition.getSuspendedBlocked().getListSB_SL()) {
 			System.out.println("NNNN"+ process);
 		}
 		

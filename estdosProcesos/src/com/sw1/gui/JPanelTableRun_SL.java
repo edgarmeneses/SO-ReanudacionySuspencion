@@ -40,7 +40,7 @@ public class JPanelTableRun_SL extends JPanel{
 	}
 
 	public void removeTable(){
-		for (Process process : transition.getBlock().getListHistoryLock()) {
+		for (Process process : transition.getRunning().getListRun_SL()) {
 			System.out.println("NNNN"+ process);
 		}
 		
