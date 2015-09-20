@@ -163,7 +163,7 @@ public class WindowsCreateProcess  extends JDialog {
 				// TODO Auto-generated method stub
 				if(validatCrear()){
 					if(!valiateName()){
-						transition.getReady().add(new Process(txtName.getText().toUpperCase(), Integer.parseInt(txtTime.getText()),Integer.parseInt(txtPriority.getText()), 
+						 transition.getReady ().getReady().add(new Process(txtName.getText().toUpperCase(), Integer.parseInt(txtTime.getText()),Integer.parseInt(txtPriority.getText()), 
 								validateLocked(txtBloqueade),validateLocked(txtSusLocked),validateLocked(txtSusReady)));
 						ready.removeTable();
 						clearProcess();
