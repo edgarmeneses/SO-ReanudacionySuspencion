@@ -158,6 +158,86 @@ public class JPanelFunction extends JPanel{
 	public void setProcess(JPanelProcess process) {
 		this.process = process;
 	}
+
+	public JPanelTableDispatch getDispatch() {
+		return dispatch;
+	}
+
+	public void setDispatch(JPanelTableDispatch dispatch) {
+		this.dispatch = dispatch;
+	}
+
+	public JPanelTableRun_SL getRunSL() {
+		return runSL;
+	}
+
+	public void setRunSL(JPanelTableRun_SL runSL) {
+		this.runSL = runSL;
+	}
+
+	public JPanelTableSL_Ready getSlReady() {
+		return slReady;
+	}
+
+	public void setSlReady(JPanelTableSL_Ready slReady) {
+		this.slReady = slReady;
+	}
+
+	public JPanelTableSB_Block getSbBlock() {
+		return sbBlock;
+	}
+
+	public void setSbBlock(JPanelTableSB_Block sbBlock) {
+		this.sbBlock = sbBlock;
+	}
+
+	public JPanelTableRun_Block getRunBlock() {
+		return runBlock;
+	}
+
+	public void setRunBlock(JPanelTableRun_Block runBlock) {
+		this.runBlock = runBlock;
+	}
+
+	public JPanelTableSB_SL getSbSL() {
+		return sbSL;
+	}
+
+	public void setSbSL(JPanelTableSB_SL sbSL) {
+		this.sbSL = sbSL;
+	}
+
+	public JPanelSusLocked getSusLocked() {
+		return susLocked;
+	}
+
+	public void setSusLocked(JPanelSusLocked susLocked) {
+		this.susLocked = susLocked;
+	}
+
+	public JPanelSusReady getSusReady() {
+		return susReady;
+	}
+
+	public void setSusReady(JPanelSusReady susReady) {
+		this.susReady = susReady;
+	}
+
+	public JPanelLocked_Ready getLockedReady() {
+		return lockedReady;
+	}
+
+	public void setLockedReady(JPanelLocked_Ready lockedReady) {
+		this.lockedReady = lockedReady;
+	}
+
+	public JPanelLock_SusLocked getLockSusLocked() {
+		return lockSusLocked;
+	}
+
+	public void setLockSusLocked(JPanelLock_SusLocked lockSusLocked) {
+		this.lockSusLocked = lockSusLocked;
+	}
 	
 	
 	
