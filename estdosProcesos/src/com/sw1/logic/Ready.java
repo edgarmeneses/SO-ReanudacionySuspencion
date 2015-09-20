@@ -10,8 +10,8 @@ public class Ready {
 
 	private ArrayList<Process> historicalReady;
 	private ArrayList<Process> ready;
-	private Running running;
 	private SuspendedReady suspendedReady;
+	private Running running;
 
 
 	public Ready() {
@@ -33,7 +33,7 @@ public class Ready {
 	 * @param process
 	 */
 	public void add(Process process){
-		this.ready.add(process);	
+		this.ready.add(0, process);	
 	}
 
 	public void addHistoricalProcess(Process process){
@@ -67,15 +67,9 @@ public class Ready {
 
 	public void dispatch(Process process) {
 		
-//	
-//		if(process.isDestroyed() && !process.isRunning()){
-//			historicalReady.add(process);
-//			running.getTransition().destroyProcess(process, ready);
-//		}else {
-//			addHistoricalProcess(process);
-//			running.add(process);
-//			ready.remove(process);
-//		}
+			addHistoricalProcess(process);
+			running.add(process);
+			ready.remove(process);
 	}
 
 
@@ -99,7 +93,13 @@ public class Ready {
 		this.ready = ready;
 	}
 
+	public SuspendedReady getSuspendedReady() {
+		return suspendedReady;
+	}
 
+	public void setSuspendedReady(SuspendedReady suspendedReady) {
+		this.suspendedReady = suspendedReady;
+	}
 
 	public Running getRunning() {
 		return running;

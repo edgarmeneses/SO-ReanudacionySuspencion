@@ -16,9 +16,9 @@ public class Block {
 	 * Atributos de la clase bloqueado
 	 */
 	private List<Process> listLocked;
-	private Ready ready;
 	private List<Process>  listHistoryLock;
 	private SuspendedBlocked suspendedBlocked;
+	private Ready ready;
 	
 	public Block(){
 		listLocked = new ArrayList<>();
@@ -35,7 +35,6 @@ public class Block {
 	public  void add(Process process){
 		
 			listLocked.add(process);
-			addHistoricalProcess(process);
 		    throwProcess(process);
 		
 	}
@@ -52,32 +51,26 @@ public class Block {
 
 	}
 	// mandar  procesos bloqueados a la lista de listos y removerlos de la lista bloqueados
-	public void activeProcess(int quantum){
+	public void activeProcess(int quantum, Process process){
 		
-		if(listLocked.get(0).getTime()<=quantum){
-			listLocked.get(0).setLocked(false);
+		if(process.getTime() <= quantum){
+			process.setLocked(false);
 		}
-		ready.add(listLocked.get(0));
-		listLocked.remove(0);
+		ready.add(process);
+		addHistoricalProcess(process);
+		listLocked.remove(process);
 	}
 	
 	public void throwProcess(Process process){
-//		if (process.isDestroyed()) {
-//			if(process.isRestart()){
-//				ready.getRunning().getTransition().addRestart(process);
-//			}
-//			ready.getRunning().getTransition().destroyProcess(process, listLocked);
-//			listLocked.remove(process);
-//		}else if(process.isRestart()){
-//			if(listLocked.get(0).getTime()<=ready.getRunning().getTransition().getQuantum()){
-//				listLocked.get(0).setLocked(false);
-//			}
-//			
-//			listLocked.remove(process);
-//			ready.getRunning().getTransition().addRestart(process);
-//			ready.add(process);
-//		}
+		if (process.isSuspendedBlocked()) {
+			suspendedBlocked.add(process);
+			addHistoricalProcess(process);
+			listLocked.remove(process);
+		}else {
+			activeProcess(ready.getRunning().getTransition().getQuantum(), process);
+		}
 	}
+	
 	/**
 	 * Getters y Setters
 	 * @return
@@ -102,5 +95,15 @@ public class Block {
 	public void setListHistoryLock(List<Process> listHistoryLock) {
 		this.listHistoryLock = listHistoryLock;
 	}
+
+	public Ready getReady() {
+		return ready;
+	}
+
+	public void setReady(Ready ready) {
+		this.ready = ready;
+	}
+	
+	
 
 }

@@ -17,16 +17,17 @@ public class Running {
 	private Queue<Process> running;
 	private ArrayList<Process> runningHystory;
 	private ArrayList<Process> expirateTime;
-	private Ready ready;
-	private Block block;
 	private SuspendedReady suspendedReady;
 	private Transition transition;
+	private Ready ready;
+	private Block block;
 
 	public Running() {
 
 		runningHystory = new ArrayList<Process>();
 		expirateTime = new ArrayList<Process>();
 		running = new LinkedList<Process>();
+		suspendedReady = new SuspendedReady();
 
 	}
 
@@ -39,7 +40,7 @@ public class Running {
 		this.transition = transition;
 		this.suspendedReady=suspendedReady;
 	}
-	
+
 
 
 
@@ -61,12 +62,10 @@ public class Running {
 	 * @param process
 	 */
 	public void timeOut(Process process){
-		//Process process = running.poll();
-//		process.setState(State.READY);
-//		ready.add(process);
-
-
+		process = running.poll();
+		ready.add(process);
 	}
+
 	/**
 	 * metodo cuando un proceso ha terminado su ejecucion
 	 * @param process
@@ -76,13 +75,11 @@ public class Running {
 	}
 
 	public void add(Process process){
-//		System.out.println(process);
-//		process.setState(State.RUNNING);
-//		comunicate(process);
-//		running.add(process);
-//		run();
+		//		System.out.println(process);
+		running.add(process);
+		run();
 	}
-	
+
 	public void addHistoricalProcess(Process process){
 		Process processHistorical= new Process();
 		processHistorical.setName(process.getName());
@@ -94,7 +91,7 @@ public class Running {
 		runningHystory.add(processHistorical);
 
 	}
-	
+
 	public void addExpirateTime(Process process){
 		Process processHistorical= new Process();
 		processHistorical.setName(process.getName());
@@ -118,26 +115,26 @@ public class Running {
 	 * manda el prceso donde corresponda
 	 */
 	public void throwprocess(Process process){
-//		if(process.isLocked()){
-//			block.add(process);
-//		}else if (process.isDestroyed()) {
-//			transition.destroyProcess(process, running);
-//		}
-//		else{
-//			if(process.getTime() == 0){
-//				process.setState(State.FINISHED);
-//				transition.getFinished().add(process);
-//			}else{
-//				process.setState(State.READY);
-//				addExpirateTime(process);
-//				ready.add(process);
-//			}
-//		}
+
+		if(process.isLocked()){
+			block.add(process);
+		}else if(process.isSuspendedReady()){
+			suspendedReady.add(process);
+		}
+		else{
+			if(process.getTime() == 0){
+				transition.getFinished().add(process);
+			}else{
+				addExpirateTime(process);
+				ready.add(process);
+			}
+		}
 	}
 
 	public void subtract(Process process){
 		process.setTime(process.getTime()-transition.getQuantum());
 	}
+
 	private void validateTime(Process process){
 
 		if (process.getTime() > transition.getQuantum()) {
@@ -155,7 +152,7 @@ public class Running {
 	public void setRunning(Queue<Process> running) {
 		this.running = running;
 	}
-	
+
 	public Ready getReady() {
 		return ready;
 	}

@@ -26,14 +26,23 @@ public class Transition  implements Runnable{
 	
 
 	public Transition(int quantum) {
+		
 		finished = new ArrayList<>();
 		this.quantum = quantum;
 		this.running = new Running();
-		this.ready = new Ready(running,suspendedReady);
+		this.suspendedReady = new SuspendedReady();
+//		this.ready = new Ready();
+		this.ready = new Ready(running, suspendedReady);
+		this.suspendedReady.setReady(ready);
+//		this.suspendedReady = new SuspendedReady(ready);
 		this.block = new Block(ready,suspendedBlocked);
+		this.suspendedBlocked = new SuspendedBlocked(block, suspendedReady);
+//		this.ready.setSuspendedReady(suspendedReady);
+//		this.ready.setRunning(running);
 		this.running.setBlock(block);
 		this.running.setReady(ready);
 		this.running.setTransition(this);
+//		this.ready = new Ready(running,suspendedReady);
 		state=State.RUNNING;
 
 	}
@@ -62,6 +71,23 @@ public class Transition  implements Runnable{
 	public Running getRunning() {
 		return running;
 	}
+	
+	public SuspendedBlocked getSuspendedBlocked() {
+		return suspendedBlocked;
+	}
+
+	public void setSuspendedBlocked(SuspendedBlocked suspendedBlocked) {
+		this.suspendedBlocked = suspendedBlocked;
+	}
+
+	public SuspendedReady getSuspendedReady() {
+		return suspendedReady;
+	}
+
+	public void setSuspendedReady(SuspendedReady suspendedReady) {
+		this.suspendedReady = suspendedReady;
+	}
+
 	@Override
 	public String toString() {
 		return "Transition [quantum=" + quantum + ", ready=" + ready
@@ -80,15 +106,11 @@ public class Transition  implements Runnable{
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		//Thread thread = Thread.currentThread();
-		while (!ready.getReady().isEmpty() || !block.getListLocked().isEmpty()) {
-			if (!ready.getReady().isEmpty()) {
+		Thread thread = Thread.currentThread();
+		while (!ready.getReady().isEmpty()) {
 				isRunning(ready.getReady().get(0));
 				//ready.getReady().remove(0);
-			}else {
-				block.activeProcess(quantum);
-			}
-
+			
 			try {
 				Thread.sleep(quantum*100);	
 			} catch (InterruptedException e) {

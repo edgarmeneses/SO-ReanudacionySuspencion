@@ -8,7 +8,11 @@ public class SuspendedReady {
 	private ArrayList<Process> suspendedReady;
 	private Ready ready;
 
-	
+	public SuspendedReady() {
+		// TODO Auto-generated constructor stub
+		historicalSuspendedReady = new ArrayList<Process>();
+		suspendedReady = new ArrayList<Process>();
+	}
 	
 	public SuspendedReady(Ready ready) {
 		super();
@@ -17,6 +21,19 @@ public class SuspendedReady {
 		suspendedReady = new ArrayList<Process>();
 		this.ready=ready;
 		
+	}
+	
+	public void add(Process process){
+		this.suspendedReady.add(process);
+		this.historicalSuspendedReady.add(process);
+		throwProcess(process);
+		
+	}
+	
+	public void throwProcess(Process process){
+		
+			ready.add(process);
+			suspendedReady.remove(process);
 	}
 
 
