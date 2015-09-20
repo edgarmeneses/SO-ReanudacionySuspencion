@@ -76,7 +76,7 @@ public class TestDos {
 			System.out.println(process.getName());
 		}
 		
-		System.out.println("Suspendido Listo-Ejecutado");
+		System.out.println("Suspendido Listo-Listos");
 		for (Process process: transition.getSuspendedReady().getListSL_ready()) {
 			System.out.println(process.getName());
 		}
