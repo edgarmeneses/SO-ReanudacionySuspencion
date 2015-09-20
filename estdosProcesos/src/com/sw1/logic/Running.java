@@ -27,7 +27,6 @@ public class Running {
 		runningHystory = new ArrayList<Process>();
 		expirateTime = new ArrayList<Process>();
 		running = new LinkedList<Process>();
-		suspendedReady = new SuspendedReady();
 
 	}
 
@@ -185,6 +184,16 @@ public class Running {
 
 	public void setExpirateTime(ArrayList<Process> expirateTime) {
 		this.expirateTime = expirateTime;
+	}
+	
+	
+
+	public SuspendedReady getSuspendedReady() {
+		return suspendedReady;
+	}
+
+	public void setSuspendedReady(SuspendedReady suspendedReady) {
+		this.suspendedReady = suspendedReady;
 	}
 
 	@Override

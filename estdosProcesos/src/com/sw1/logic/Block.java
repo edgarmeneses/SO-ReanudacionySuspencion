@@ -103,6 +103,16 @@ public class Block {
 	public void setReady(Ready ready) {
 		this.ready = ready;
 	}
+
+	public SuspendedBlocked getSuspendedBlocked() {
+		return suspendedBlocked;
+	}
+
+	public void setSuspendedBlocked(SuspendedBlocked suspendedBlocked) {
+		this.suspendedBlocked = suspendedBlocked;
+	}
+	
+	
 	
 	
 

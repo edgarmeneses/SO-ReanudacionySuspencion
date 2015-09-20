@@ -31,17 +31,25 @@ public class Transition  implements Runnable{
 		this.quantum = quantum;
 		this.running = new Running();
 		this.suspendedReady = new SuspendedReady();
-//		this.ready = new Ready();
+		this.block = new Block();
+
+
 		this.ready = new Ready(running, suspendedReady);
-		this.suspendedReady.setReady(ready);
-//		this.suspendedReady = new SuspendedReady(ready);
-		this.block = new Block(ready,suspendedBlocked);
 		this.suspendedBlocked = new SuspendedBlocked(block, suspendedReady);
+		
 //		this.ready.setSuspendedReady(suspendedReady);
 //		this.ready.setRunning(running);
 		this.running.setBlock(block);
 		this.running.setReady(ready);
 		this.running.setTransition(this);
+		this.running.setSuspendedReady(suspendedReady);
+		
+		this.suspendedReady.setReady(ready);
+		
+		this.block.setReady(ready);
+		this.block.setSuspendedBlocked(suspendedBlocked);
+		
+		
 //		this.ready = new Ready(running,suspendedReady);
 		state=State.RUNNING;
 
@@ -87,6 +95,20 @@ public class Transition  implements Runnable{
 	public void setSuspendedReady(SuspendedReady suspendedReady) {
 		this.suspendedReady = suspendedReady;
 	}
+	
+	
+
+	public void setReady(Ready ready) {
+		this.ready = ready;
+	}
+
+	public void setBlock(Block block) {
+		this.block = block;
+	}
+
+	public void setRunning(Running running) {
+		this.running = running;
+	}
 
 	@Override
 	public String toString() {
@@ -109,6 +131,7 @@ public class Transition  implements Runnable{
 		Thread thread = Thread.currentThread();
 		while (!ready.getReady().isEmpty()) {
 				isRunning(ready.getReady().get(0));
+				System.out.println(ready.getReady().size());
 				//ready.getReady().remove(0);
 			
 			try {
