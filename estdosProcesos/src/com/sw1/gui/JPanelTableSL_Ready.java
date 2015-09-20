@@ -41,7 +41,7 @@ public class JPanelTableSL_Ready extends JPanel{
 	}
 
 	public void removeTable(){
-		for (Process process : transition.getBlock().getListHistoryLock()) {
+		for (Process process : transition.getSuspendedReady().getListSL_ready()) {
 			System.out.println("NNNN"+ process);
 		}
 		
