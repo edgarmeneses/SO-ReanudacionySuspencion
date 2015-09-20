@@ -155,6 +155,16 @@ public class JPanelOption extends JPanel {
 					finished.removeTable();
 					running.removeTable();
 					timeout.removeTable();
+					lock_SusLocked.removeTable();
+					locked_Ready.removeTable();
+					susLocked.removeTable();
+					susReady.removeTable();
+					dispatch.removeTable();
+					run_Block.removeTable();
+					run_SL.removeTable();
+					sb_Block.removeTable();
+					sb_SL.removeTable();
+					sl_Ready.removeTable();
 				}else{
 					JOptionPane.showMessageDialog(null, "Para ejecutar deben existir procesos");
 				}
