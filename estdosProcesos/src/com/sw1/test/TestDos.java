@@ -80,6 +80,11 @@ public class TestDos {
 		for (Process process: transition.getSuspendedReady().getListSL_ready()) {
 			System.out.println(process.getName());
 		}
+		
+		System.out.println("Bloqueado-Suspendido Bloqueado");
+		for (Process process: transition.getBlock().getListBlock_SB()) {
+			System.out.println(process.getName());
+		}
 	
 		System.out.println("Salida ");
 		for (Process process : transition.getFinished()) {

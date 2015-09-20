@@ -18,6 +18,7 @@ public class Block {
 	private List<Process> listLocked;
 	private List<Process>  listHistoryLock;
 	private ArrayList<Process> listLock_Ready;
+	private ArrayList<Process> listBlock_SB;
 	private SuspendedBlocked suspendedBlocked;
 	private Ready ready;
 	
@@ -25,12 +26,14 @@ public class Block {
 		listLocked = new ArrayList<>();
 		listHistoryLock = new ArrayList<Process>();
 		listLock_Ready = new ArrayList<Process>();
+		listBlock_SB = new ArrayList<Process>();
 	}
 	
 	public Block(Ready ready,SuspendedBlocked suspendedBlocked){
 		listLocked = new ArrayList<>();
 		listHistoryLock = new ArrayList<Process>();
 		listLock_Ready = new ArrayList<Process>();
+		listBlock_SB = new ArrayList<Process>();
 		this.ready= ready;
 		this.suspendedBlocked= suspendedBlocked;
 	}
@@ -66,6 +69,19 @@ public class Block {
 
 	}
 	
+	public void addHistoricalLockSB(Process process){
+		Process processHistorical= new Process();
+		processHistorical.setName(process.getName());
+		processHistorical.setLocked(process.isLocked());
+		processHistorical.setPriority(process.getPriority());
+		processHistorical.setTime(process.getTime());
+		processHistorical.setSuspendedBlocked(process.isSuspendedBlocked());
+		processHistorical.setSuspendedReady(process.isSuspendedReady());
+		listBlock_SB.add(processHistorical);
+
+	}
+	
+	
 	// mandar  procesos bloqueados a la lista de listos y removerlos de la lista bloqueados
 	public void activeProcess(int quantum, Process process){
 		
@@ -82,6 +98,7 @@ public class Block {
 		if (process.isSuspendedBlocked()) {
 			suspendedBlocked.add(process);
 			addHistoricalProcess(process);
+			addHistoricalLockSB(process);
 			listLocked.remove(process);
 		}else {
 			activeProcess(ready.getRunning().getTransition().getQuantum(), process);
@@ -100,6 +117,14 @@ public class Block {
 		this.listLocked = listLocked;
 	}
 	
+	public ArrayList<Process> getListBlock_SB() {
+		return listBlock_SB;
+	}
+
+	public void setListBlock_SB(ArrayList<Process> listBlock_SB) {
+		this.listBlock_SB = listBlock_SB;
+	}
+
 	public ArrayList<Process> getListLock_Ready() {
 		return listLock_Ready;
 	}
