@@ -20,28 +20,31 @@ import com.sw1.logic.Transition;
 public class WindowsCreateProcess  extends JDialog {
 
 	private JLabel lblName;
-	private JLabel lblPriority;
-	private JLabel lblTime;
-	private JLabel lblBloqueade;
 	private JTextField txtName;
+	
+	private JLabel lblPriority;
 	private JTextField txtPriority;
+	
+	private JLabel lblTime;
 	private JTextField txtTime;
+	
+	private JLabel lblBloqueade;
 	private JComboBox<String>  txtBloqueade;
+
 	private JButton btnCreate;
+	
 	private Transition transition;
+	
+	
 	private JPanelReady ready;
 	
-	private JLabel lblRunning;
-	private JComboBox<String>  txtRunning;
+	private JLabel lblSusLocked;
+	private JComboBox<String>  txtSusLocked;
 	
-	private JLabel lblDestroyed;
-	private JComboBox<String>  txtDestroyed;
+	private JLabel lblSusReady;
+	private JComboBox<String>  txtSusReady;
 	
-	private JLabel lblComunicate;
-	private JComboBox<String>  txtComunicate;
 	
-	private JLabel lblRestart;
-	private JComboBox<String>  txtRestart;
 
 	
 
@@ -55,11 +58,11 @@ public class WindowsCreateProcess  extends JDialog {
 	public void init(){
 
 		this.setTitle("Crear Proceso");
-		this.setSize(400, 600);
+		this.setSize(400, 450);
 		this.setLocationRelativeTo(null);
 
 		this.lblName = new JLabel("Nombre:");
-		this.lblName.setBounds(100, 20, 100, 30);
+		this.lblName.setBounds(50, 20, 100, 30);
 		this.lblName.setVisible(true);
 
 
@@ -69,7 +72,7 @@ public class WindowsCreateProcess  extends JDialog {
 		validateSpaces(txtName);
 		
 		this.lblPriority = new JLabel("Prioridad:");
-		this.lblPriority.setBounds(100, 140, 120, 30);
+		this.lblPriority.setBounds(50, 140, 120, 30);
 		this.lblPriority.setVisible(true);
 
 		this.txtPriority = new JTextField();
@@ -78,7 +81,7 @@ public class WindowsCreateProcess  extends JDialog {
 		validateNumber(txtPriority);
 
 		this.lblTime = new JLabel("Tiempo:");
-		this.lblTime.setBounds(100, 80, 100, 30);
+		this.lblTime.setBounds(50, 80, 100, 30);
 		this.lblTime.setVisible(true);
 
 		this.txtTime = new JTextField();
@@ -87,7 +90,7 @@ public class WindowsCreateProcess  extends JDialog {
 		validateNumber(txtTime);
 
 		this.lblBloqueade = new JLabel("Bloqueado:");
-		this.lblBloqueade.setBounds(100, 200, 100, 30);
+		this.lblBloqueade.setBounds(50, 200, 100, 30);
 		this.lblBloqueade.setVisible(true);
 
 		this. txtBloqueade= new JComboBox<>();
@@ -98,45 +101,26 @@ public class WindowsCreateProcess  extends JDialog {
 
 		
 		
-		this.lblRunning = new JLabel("Ejectuado:");
-		this.lblRunning.setBounds(100, 250, 100, 30);
-		this.lblRunning.setVisible(true);
+		this.lblSusLocked = new JLabel("Sus Bloqueado:");
+		this.lblSusLocked.setBounds(50, 250, 100, 30);
+		this.lblSusLocked.setVisible(true);
 		
-		this. txtRunning= new JComboBox<>();
-		this.txtRunning.setBounds(170,250, 100, 30);
-		this.txtRunning.setVisible(true);
-		this.txtRunning.addItem("Si");
-		this.txtRunning.addItem("No");
+		this. txtSusLocked= new JComboBox<>();
+		this.txtSusLocked.setBounds(170,250, 100, 30);
+		this.txtSusLocked.setVisible(true);
+		this.txtSusLocked.addItem("Si");
+		this.txtSusLocked.addItem("No");
 		
-		this.lblComunicate = new JLabel("Comunicado:");
-		this.lblComunicate .setBounds(100, 300, 100, 30);
-		this.lblComunicate .setVisible(true);
 		
-		this. txtComunicate= new JComboBox<>();
-		this.txtComunicate.setBounds(170,300, 100, 30);
-		this.txtComunicate.setVisible(true);
-		this.txtComunicate.addItem("Si");
-		this.txtComunicate.addItem("No");
+		this.lblSusReady = new JLabel("Suspen Listos:");
+		this.lblSusReady.setBounds(50, 300, 100, 30);
+		this.lblSusReady.setVisible(true);
 		
-		this.lblRestart = new JLabel("Reiniciado:");
-		this.lblRestart  .setBounds(100, 350, 100, 30);
-		this.lblRestart  .setVisible(true);
-		
-		this.txtRestart= new JComboBox<>();
-		this.txtRestart.setBounds(170,350, 100, 30);
-		this.txtRestart.setVisible(true);
-		this.txtRestart.addItem("Si");
-		this.txtRestart.addItem("No");
-		
-		this.lblDestroyed = new JLabel("Destruido:");
-		this.lblDestroyed.setBounds(100, 400, 100, 30);
-		this.lblDestroyed.setVisible(true);
-		
-		this.txtDestroyed= new JComboBox<>();
-		this.txtDestroyed.setBounds(170,400, 100, 30);
-		this.txtDestroyed.setVisible(true);
-		this.txtDestroyed.addItem("Si");
-		this.txtDestroyed.addItem("No");
+		this.txtSusReady= new JComboBox<>();
+		this.txtSusReady.setBounds(170,300, 100, 30);
+		this.txtSusReady.setVisible(true);
+		this.txtSusReady.addItem("Si");
+		this.txtSusReady.addItem("No");
 
 
 		this.add(lblName);
@@ -147,23 +131,19 @@ public class WindowsCreateProcess  extends JDialog {
 		this.add(txtPriority);
 		this.add(lblBloqueade);
 		this.add(txtBloqueade);
-		this.add(lblRunning);
-		this.add(txtRunning);
-		this.add(lblComunicate);
-		this.add(txtComunicate);
-		this.add(lblRestart);
-		this.add(txtRestart);
-		this.add(lblDestroyed);
-		this.add(txtDestroyed);
+		this.add(lblSusLocked);
+		this.add(txtSusLocked);
+
+		this.add(lblSusReady);
+		this.add(txtSusReady);
 		addProcess();
 
 		this.getContentPane().setLayout(null);
 
 	}
-
 	public void addProcess(){
 		this.btnCreate= new JButton("Crear");
-		this.btnCreate.setBounds(170,450, 100, 30);
+		this.btnCreate.setBounds(150,350, 100, 30);
 		this.btnCreate.setVisible(true);
 		this.add(btnCreate);
 		this.btnCreate.addMouseListener(new MouseListener() {
@@ -193,9 +173,8 @@ public class WindowsCreateProcess  extends JDialog {
 				// TODO Auto-generated method stub
 				if(validatCrear()){
 					if(!valiateName()){
-//						transition.getReady().add(new Process(txtName.getText().toUpperCase(), Integer.parseInt(txtTime.getText()),Integer.parseInt(txtPriority.getText()), 
-//								validateLocked(txtRunning),validateLocked(txtBloqueade),
-//								validateLocked(txtDestroyed),validateLocked(txtComunicate),validateLocked(txtRestart)));
+						transition.getReady().add(new Process(txtName.getText().toUpperCase(), Integer.parseInt(txtTime.getText()),Integer.parseInt(txtPriority.getText()), 
+								validateLocked(txtBloqueade),validateLocked(txtSusLocked),validateLocked(txtSusReady)));
 						ready.removeTable();
 						clearProcess();
 					}else{
@@ -315,5 +294,6 @@ public class WindowsCreateProcess  extends JDialog {
 //		Matcher matcher = pattern.matcher(cadena);
 //		return matcher.find();
 	}
+	
 
 }
