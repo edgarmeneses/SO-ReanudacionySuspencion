@@ -25,7 +25,7 @@ public class JPanelSusReady extends JPanel {
 	}
 
 	public void init(){
-		this.setBorder(new TitledBorder("Fializado"));
+		this.setBorder(new TitledBorder("Suspendido Listo"));
 		this.setLayout(new GridLayout(3, 2));
 	}
 
