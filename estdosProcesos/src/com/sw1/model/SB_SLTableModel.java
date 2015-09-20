@@ -24,11 +24,9 @@ public class SB_SLTableModel extends AbstractTableModel implements Runnable{
 	
 	public void fill(){
 		for (Process process : transition.getSuspendedBlocked().getListSB_SL()) {
-			System.out.println(process.getName());
-		}
-		
+			data.add(fillRow(process.getName()));
+		}	
 	}
-
 	public Object[] fillRow(String name){
 		return new Object[]{name};
 	}

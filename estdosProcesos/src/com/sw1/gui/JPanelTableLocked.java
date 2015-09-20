@@ -42,10 +42,6 @@ public class JPanelTableLocked extends JPanel{
 	}
 
 	public void removeTable(){
-		for (Process process : transition.getBlock().getListHistoryLock()) {
-			System.out.println("NNNN"+ process);
-		}
-		
 		tableLocked.setModel(new LockedTableModel(transition));
 		tableLocked.repaint();
 		

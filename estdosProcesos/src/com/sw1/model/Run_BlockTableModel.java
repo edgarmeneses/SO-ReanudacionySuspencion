@@ -24,7 +24,7 @@ public class Run_BlockTableModel extends AbstractTableModel implements Runnable{
 	
 	public void fill(){
 		for (Process process : transition.getRunning().getListRun_locked()) {
-			System.out.println(process.getName());
+			data.add(fillRow(process.getName()));
 		}
 		
 	}

@@ -24,7 +24,7 @@ public class SL_ReadyTableModel extends AbstractTableModel implements Runnable{
 	
 	public void fill(){
 		for (Process process: transition.getSuspendedReady().getListSL_ready()) {
-			System.out.println(process.getName());
+			data.add(fillRow(process.getName()));
 		}
 		
 	}

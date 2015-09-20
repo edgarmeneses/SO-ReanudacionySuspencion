@@ -6,14 +6,10 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.TitledBorder;
-
 import com.sw1.logic.Process;
 import com.sw1.logic.Transition;
-import com.sw1.model.LockedTableModel;
 import com.sw1.model.Run_BlockTableModel;
-import com.sw1.model.Run_SLTableModel;
-import com.sw1.model.SB_BlockTableModel;
-import com.sw1.model.SL_ReadyTableModel;
+
 
 public class JPanelTableRun_Block extends JPanel{
 
@@ -43,10 +39,6 @@ public class JPanelTableRun_Block extends JPanel{
 	}
 
 	public void removeTable(){
-		for (Process process : transition.getRunning().getListRun_locked()) {
-			System.out.println("NNNN"+ process);
-		}
-		
 		tableLocked.setModel(new Run_BlockTableModel(transition));
 		tableLocked.repaint();
 		

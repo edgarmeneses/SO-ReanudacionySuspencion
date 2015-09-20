@@ -30,22 +30,13 @@ public class WindowsCreateProcess  extends JDialog {
 	
 	private JLabel lblBloqueade;
 	private JComboBox<String>  txtBloqueade;
-
 	private JButton btnCreate;
-	
 	private Transition transition;
-	
-	
 	private JPanelReady ready;
-	
 	private JLabel lblSusLocked;
 	private JComboBox<String>  txtSusLocked;
-	
 	private JLabel lblSusReady;
 	private JComboBox<String>  txtSusReady;
-	
-	
-
 	
 
 	public WindowsCreateProcess(MainWindow window,Transition transition, JPanelReady ready) {

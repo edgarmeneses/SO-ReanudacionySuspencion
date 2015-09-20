@@ -40,10 +40,6 @@ public class JPanelTableRun_SL extends JPanel{
 	}
 
 	public void removeTable(){
-		for (Process process : transition.getRunning().getListRun_SL()) {
-			System.out.println("NNNN"+ process);
-		}
-		
 		tableLocked.setModel(new Run_SLTableModel(transition));
 		tableLocked.repaint();
 		
