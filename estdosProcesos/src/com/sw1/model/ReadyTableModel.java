@@ -41,8 +41,8 @@ public class ReadyTableModel extends AbstractTableModel implements Runnable{
 		
 	}
 
-	public Object[] fillRow(String name, int time, int priority, boolean isBlock, boolean isSuspBlock, boolean isSuspReady){
-		return new Object[]{name,priority,time,isBlock,isSuspBlock,isSuspReady};
+	public Object[] fillRow(String name,  int time, int priority,boolean isBlock, boolean isSuspBlock, boolean isSuspReady){
+		return new Object[]{name,time,priority,isBlock,isSuspBlock,isSuspReady};
 	}
 	
 

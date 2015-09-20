@@ -71,15 +71,6 @@ public class WindowsCreateProcess  extends JDialog {
 		this.txtName.setVisible(true);
 		validateSpaces(txtName);
 		
-		this.lblPriority = new JLabel("Prioridad:");
-		this.lblPriority.setBounds(50, 140, 120, 30);
-		this.lblPriority.setVisible(true);
-
-		this.txtPriority = new JTextField();
-		this.txtPriority.setBounds(170, 140, 100, 30);
-		this.txtPriority.setVisible(true);
-		validateNumber(txtPriority);
-
 		this.lblTime = new JLabel("Tiempo:");
 		this.lblTime.setBounds(50, 80, 100, 30);
 		this.lblTime.setVisible(true);
@@ -88,6 +79,15 @@ public class WindowsCreateProcess  extends JDialog {
 		this.txtTime.setBounds(170, 80, 100, 30);
 		this.txtTime.setVisible(true);
 		validateNumber(txtTime);
+		
+		this.lblPriority = new JLabel("Prioridad:");
+		this.lblPriority.setBounds(50, 140, 120, 30);
+		this.lblPriority.setVisible(true);
+
+		this.txtPriority = new JTextField();
+		this.txtPriority.setBounds(170, 140, 100, 30);
+		this.txtPriority.setVisible(true);
+		validateNumber(txtPriority);
 
 		this.lblBloqueade = new JLabel("Bloqueado:");
 		this.lblBloqueade.setBounds(50, 200, 100, 30);
@@ -122,11 +122,10 @@ public class WindowsCreateProcess  extends JDialog {
 		this.txtSusReady.addItem("Si");
 		this.txtSusReady.addItem("No");
 
-
-		this.add(lblName);
-		this.add(txtName);
 		this.add(lblTime);
 		this.add(txtTime);
+		this.add(lblName);
+		this.add(txtName);
 		this.add(lblPriority);
 		this.add(txtPriority);
 		this.add(lblBloqueade);
