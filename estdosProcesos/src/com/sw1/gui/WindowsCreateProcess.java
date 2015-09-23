@@ -38,6 +38,11 @@ public class WindowsCreateProcess  extends JDialog {
 	private JLabel lblSusReady;
 	private JComboBox<String>  txtSusReady;
 	
+	private JLabel  jLblReaSusLocked;
+	private JComboBox<String> cbxReaSusLocked;
+	
+	private JLabel  jLblReaSusReady;
+	private JComboBox<String> cbxReaSusready;
 
 	public WindowsCreateProcess(MainWindow window,Transition transition, JPanelReady ready) {
 		super(window, true);
@@ -49,7 +54,7 @@ public class WindowsCreateProcess  extends JDialog {
 	public void init(){
 
 		this.setTitle("Crear Proceso");
-		this.setSize(400, 450);
+		this.setSize(400, 600);
 		this.setLocationRelativeTo(null);
 
 		this.lblName = new JLabel("Nombre:");
@@ -87,8 +92,8 @@ public class WindowsCreateProcess  extends JDialog {
 		this. txtBloqueade= new JComboBox<>();
 		this.txtBloqueade.setBounds(170,200, 100, 30);
 		this.txtBloqueade.setVisible(true);
-		this.txtBloqueade.addItem("Si");
 		this.txtBloqueade.addItem("No");
+		this.txtBloqueade.addItem("Si");
 
 		
 		
@@ -99,20 +104,40 @@ public class WindowsCreateProcess  extends JDialog {
 		this. txtSusLocked= new JComboBox<>();
 		this.txtSusLocked.setBounds(170,250, 100, 30);
 		this.txtSusLocked.setVisible(true);
-		this.txtSusLocked.addItem("Si");
 		this.txtSusLocked.addItem("No");
+		this.txtSusLocked.addItem("Si");
+		
+		this.jLblReaSusLocked = new JLabel("Rea Sus Bloquedos:");
+		this.jLblReaSusLocked.setBounds(50, 300, 100, 30);
+		this.jLblReaSusLocked.setVisible(true);
+		
+		this.cbxReaSusLocked= new JComboBox<>();
+		this.cbxReaSusLocked.setBounds(170,300, 100, 30);
+		this.cbxReaSusLocked.setVisible(true);
+		this.cbxReaSusLocked.addItem("No");
+		this.cbxReaSusLocked.addItem("Si");
 		
 		
 		this.lblSusReady = new JLabel("Suspen Listos:");
-		this.lblSusReady.setBounds(50, 300, 100, 30);
+		this.lblSusReady.setBounds(50, 350, 100, 30);
 		this.lblSusReady.setVisible(true);
 		
 		this.txtSusReady= new JComboBox<>();
-		this.txtSusReady.setBounds(170,300, 100, 30);
+		this.txtSusReady.setBounds(170,350, 100, 30);
 		this.txtSusReady.setVisible(true);
-		this.txtSusReady.addItem("Si");
 		this.txtSusReady.addItem("No");
-
+		this.txtSusReady.addItem("Si");
+		
+		this.jLblReaSusReady = new JLabel("Rea Sus Listos:");
+		this.jLblReaSusReady.setBounds(50, 400, 100, 30);
+		this.jLblReaSusReady.setVisible(true);
+		
+		this.cbxReaSusready= new JComboBox<>();
+		this.cbxReaSusready.setBounds(170,400, 100, 30);
+		this.cbxReaSusready.setVisible(true);
+		this.cbxReaSusready.addItem("No");
+		this.cbxReaSusready.addItem("Si");
+		
 		this.add(lblTime);
 		this.add(txtTime);
 		this.add(lblName);
@@ -122,10 +147,14 @@ public class WindowsCreateProcess  extends JDialog {
 		this.add(lblBloqueade);
 		this.add(txtBloqueade);
 		this.add(lblSusLocked);
-		this.add(txtSusLocked);
-
+		this.add(txtSusLocked);		
+		this.add(jLblReaSusLocked);
+		this.add(cbxReaSusLocked);
 		this.add(lblSusReady);
-		this.add(txtSusReady);
+		this.add(txtSusReady);	
+		this.add(jLblReaSusReady);
+		this.add(cbxReaSusready);
+		
 		addProcess();
 
 		this.getContentPane().setLayout(null);
@@ -133,7 +162,7 @@ public class WindowsCreateProcess  extends JDialog {
 	}
 	public void addProcess(){
 		this.btnCreate= new JButton("Crear");
-		this.btnCreate.setBounds(150,350, 100, 30);
+		this.btnCreate.setBounds(150,450, 100, 30);
 		this.btnCreate.setVisible(true);
 		this.add(btnCreate);
 		this.btnCreate.addMouseListener(new MouseListener() {
@@ -186,6 +215,12 @@ public class WindowsCreateProcess  extends JDialog {
 		txtName.setText("");
 		txtPriority.setText("");
 		txtTime.setText("");
+		txtBloqueade.setSelectedItem("No");
+		txtSusLocked.setSelectedItem("No");
+		txtSusReady.setSelectedItem("No");
+		cbxReaSusLocked.setSelectedItem("No");
+		cbxReaSusready.setSelectedItem("No");
+		
 	}
 
 	public void validateNumber(JTextField field){
@@ -284,6 +319,4 @@ public class WindowsCreateProcess  extends JDialog {
 //		Matcher matcher = pattern.matcher(cadena);
 //		return matcher.find();
 	}
-	
-
 }
