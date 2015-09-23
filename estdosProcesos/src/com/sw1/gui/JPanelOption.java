@@ -66,7 +66,7 @@ public class JPanelOption extends JPanel {
 		this.sl_Ready = sl_Ready;
 		
 		this.setLayout(null);
-		this.setBackground(new Color(223,211,182));
+		this.setBackground(new Color(218,218,218,249));
 
 		addProcess();
 		running();
